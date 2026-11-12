@@ -24,3 +24,6 @@ reports/
 
 # Note: calibration.json is intentionally NOT ignored. It holds measured runtime
 # constants (no secrets) so others can reproduce an estimate.
+
+# Local pyenv version pin
+.python-version
