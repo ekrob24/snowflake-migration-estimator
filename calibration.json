@@ -1,0 +1,150 @@
+{
+  "throughput_mb_s_xs": 1243.7,
+  "overhead_s": 1.268,
+  "scaling_efficiency": 0.671,
+  "measured_on": "TPC-H SF100, 2026-11-12",
+  "queries": [
+    {
+      "query_id": "01c85d2c-0109-cb4d-0000-0012f81a50c5",
+      "name": "q1_pricing_summary",
+      "size": "XSMALL",
+      "bytes": 2956697728,
+      "cache_fraction": 0.0,
+      "mb": 2956.697728,
+      "exec_s": 6.893,
+      "compile_s": 0.653
+    },
+    {
+      "query_id": "01c85d2d-0109-cb16-0000-0012f81ad7a9",
+      "name": "q3_shipping_priority",
+      "size": "XSMALL",
+      "bytes": 3148368816,
+      "cache_fraction": 0.24770192928603824,
+      "mb": 3148.368816,
+      "exec_s": 3.636,
+      "compile_s": 12.989
+    },
+    {
+      "query_id": "01c85d2d-0109-cb4d-0000-0012f81a50c9",
+      "name": "q5_local_supplier",
+      "size": "XSMALL",
+      "bytes": 6223211328,
+      "cache_fraction": 0.3557375950779861,
+      "mb": 6223.211328,
+      "exec_s": 5.336,
+      "compile_s": 7.499
+    },
+    {
+      "query_id": "01c85d2d-0109-cb51-0000-0012f81a20b1",
+      "name": "q6_forecast_revenue",
+      "size": "XSMALL",
+      "bytes": 453591040,
+      "cache_fraction": 1.0,
+      "mb": 453.59104,
+      "exec_s": 0.34,
+      "compile_s": 0.353
+    },
+    {
+      "query_id": "01c85d2d-0109-cb16-0000-0012f81ad7ad",
+      "name": "q10_returned_items",
+      "size": "XSMALL",
+      "bytes": 2550364256,
+      "cache_fraction": 0.9652491765348832,
+      "mb": 2550.364256,
+      "exec_s": 2.454,
+      "compile_s": 1.96
+    },
+    {
+      "query_id": "01c85d2d-0109-cb4d-0000-0012f81a50cd",
+      "name": "q12_shipping_modes",
+      "size": "XSMALL",
+      "bytes": 1125690624,
+      "cache_fraction": 0.5570421577230796,
+      "mb": 1125.690624,
+      "exec_s": 2.367,
+      "compile_s": 5.025
+    },
+    {
+      "query_id": "01c85d2d-0109-cb18-0000-0012f81a40b5",
+      "name": "full_scan_lineitem",
+      "size": "XSMALL",
+      "bytes": 3723767424,
+      "cache_fraction": 0.4487,
+      "mb": 3723.767424,
+      "exec_s": 4.074,
+      "compile_s": 0.373
+    },
+    {
+      "query_id": "01c85d2d-0109-cb18-0000-0012f81a40c1",
+      "name": "q1_pricing_summary",
+      "size": "SMALL",
+      "bytes": 2957009024,
+      "cache_fraction": 0.0,
+      "mb": 2957.009024,
+      "exec_s": 3.516,
+      "compile_s": 0.429
+    },
+    {
+      "query_id": "01c85d2d-0109-cb16-0000-0012f81ad7b9",
+      "name": "q3_shipping_priority",
+      "size": "SMALL",
+      "bytes": 3148474336,
+      "cache_fraction": 0.3609128393934604,
+      "mb": 3148.474336,
+      "exec_s": 2.416,
+      "compile_s": 2.778
+    },
+    {
+      "query_id": "01c85d2e-0109-cb16-0000-0012f81ad7bd",
+      "name": "q5_local_supplier",
+      "size": "SMALL",
+      "bytes": 6225813392,
+      "cache_fraction": 0.4618886330429224,
+      "mb": 6225.813392,
+      "exec_s": 3.05,
+      "compile_s": 2.141
+    },
+    {
+      "query_id": "01c85d2e-0109-cf60-0000-0012f81a60cd",
+      "name": "q6_forecast_revenue",
+      "size": "SMALL",
+      "bytes": 454951968,
+      "cache_fraction": 0.9489,
+      "mb": 454.951968,
+      "exec_s": 0.284,
+      "compile_s": 0.386
+    },
+    {
+      "query_id": "01c85d2e-0109-cb18-0000-0012f81a40c5",
+      "name": "q10_returned_items",
+      "size": "SMALL",
+      "bytes": 2550631472,
+      "cache_fraction": 0.9510591975068362,
+      "mb": 2550.631472,
+      "exec_s": 1.833,
+      "compile_s": 9.158
+    },
+    {
+      "query_id": "01c85d2e-0109-cb16-0000-0012f81ad7c5",
+      "name": "q12_shipping_modes",
+      "size": "SMALL",
+      "bytes": 1125920800,
+      "cache_fraction": 0.5712195031337906,
+      "mb": 1125.9208,
+      "exec_s": 1.655,
+      "compile_s": 1.521
+    },
+    {
+      "query_id": "01c85d2e-0109-cb51-0000-0012f81a20bd",
+      "name": "full_scan_lineitem",
+      "size": "SMALL",
+      "bytes": 3752621040,
+      "cache_fraction": 0.5008,
+      "mb": 3752.62104,
+      "exec_s": 3.015,
+      "compile_s": 0.2
+    }
+  ],
+  "median_compile_s": 1.96,
+  "avg_cache_fraction": 0.511
+}

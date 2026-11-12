@@ -1,0 +1,51 @@
+-- PostgreSQL statement-statistics export for sfestimate (`--source postgres`).
+--
+-- Produces one row per normalized statement with the columns
+-- parsers.parse_postgres expects:
+--   userid, queryid, query, calls, total_exec_time, mean_exec_time,
+--   rows, shared_blks_hit, shared_blks_read
+--
+-- Requires PostgreSQL 13 or later (13 renamed total_time/mean_time to
+-- total_exec_time/mean_exec_time). On 12 and earlier, select
+-- total_time AS total_exec_time and mean_time AS mean_exec_time instead.
+-- Times are in milliseconds.
+--
+-- The pg_stat_statements extension must be enabled:
+--   1. postgresql.conf: shared_preload_libraries = 'pg_stat_statements'
+--      (then restart; on RDS/Cloud SQL/Azure set it in the parameter group / flags)
+--   2. In the database you query from:  CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+-- Run as a superuser or a member of pg_read_all_stats, otherwise other users'
+-- query text shows as "<insufficient privilege>".
+--
+-- OBSERVATION WINDOW: pg_stat_statements keeps cumulative totals since the stats
+-- were last reset, not per-execution timestamps. Pass --window-days equal to the
+-- time since that reset, or the monthly cost will be wrong. On PostgreSQL 14+:
+--   SELECT stats_reset, now() - stats_reset AS window FROM pg_stat_statements_info;
+-- On 13 there is no record of the reset time; reset it yourself with
+--   SELECT pg_stat_statements_reset();
+-- and export again after a known period (one or two weeks of normal load is ideal).
+-- Note pg_stat_statements.max (default 5000) caps the statements kept; rarely run
+-- statements may have been evicted.
+--
+-- How to run and export to CSV (psql; \copy writes the file on your machine):
+--   psql "host=<host> dbname=<db> user=<user>" -v ON_ERROR_STOP=1 -f export_queries/postgres.sql
+-- This writes postgres_history.csv in the current directory. Or, with psql 12+:
+--   psql ... --csv -c "<the SELECT below>" > postgres_history.csv
+
+\copy (SELECT s.userid, s.queryid, s.query, s.calls, s.total_exec_time, s.mean_exec_time, s.rows, s.shared_blks_hit, s.shared_blks_read FROM pg_stat_statements s JOIN pg_database d ON d.oid = s.dbid WHERE d.datname NOT IN ('template0', 'template1') AND s.calls > 0 ORDER BY s.total_exec_time DESC) TO 'postgres_history.csv' WITH (FORMAT csv, HEADER)
+
+-- The same query, formatted for reading (\copy must be on one line):
+--
+-- SELECT s.userid, s.queryid, s.query, s.calls,
+--        s.total_exec_time,      -- ms, all calls
+--        s.mean_exec_time,       -- ms per call
+--        s.rows,
+--        s.shared_blks_hit,      -- 8 KiB blocks found in shared buffers
+--        s.shared_blks_read      -- 8 KiB blocks read from disk / OS cache
+-- FROM pg_stat_statements s
+-- JOIN pg_database d ON d.oid = s.dbid
+-- WHERE d.datname NOT IN ('template0', 'template1')
+--   AND s.calls > 0
+-- ORDER BY s.total_exec_time DESC;
+--
+-- To limit to one database, add: AND d.datname = current_database()

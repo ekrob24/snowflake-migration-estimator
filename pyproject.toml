@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snowflake-migration-estimator"
+version = "0.1.0"
+description = "Estimate Snowflake warehouse sizing and monthly cost from Redshift, BigQuery, or Postgres query history."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []  # the estimator itself is pure standard-library Python
+
+[project.optional-dependencies]
+snowflake = ["snowflake-connector-python>=3.0", "cryptography>=41", "python-dotenv>=1.0"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+sfestimate = "sfestimate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

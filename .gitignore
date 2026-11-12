@@ -1,0 +1,26 @@
+# Secrets: never commit these
+.env
+keys/
+*.p8
+*.pem
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Generated output
+reports/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Note: calibration.json is intentionally NOT ignored. It holds measured runtime
+# constants (no secrets) so others can reproduce an estimate.
